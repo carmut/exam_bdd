@@ -74,3 +74,19 @@ INSERT INTO `emprunts`(`id_adherent`, `isbn`, `date_emprunt`, `date_retour`) VAL
 ('4', '9780192816092', '2025-05-11', '2025-06-10'),
 ('4', '9780194238021', '2025-06-12', '2025-07-10'),
 ('4', '9780520201798', '2025-07-13', '2025-08-10');
+
+
+-- question 4
+-- changement de l'adresse pour charles dickens
+UPDATE `adherents` SET `adresse` = '14 rue de la tables, BDD_ville, Londres' WHERE `id` = '2';
+
+-- question 5
+-- creation de la vue livre retard +30 jours
+CREATE VIEW `retard` AS 
+SELECT adherents.nom, livres.titre, DATEDIFF(date_inscription, date_retour) AS `retard`
+FROM `adherents`
+JOIN `emprunts` ON adherents.id_adherent = emprunts.id_adherent
+JOIN `livres` ON emprunts.isbn = livres.isbn
+HAVING retard > 30;
+
+-- question 6
