@@ -89,4 +89,10 @@ JOIN `emprunts` ON adherents.id_adherent = emprunts.id_adherent
 JOIN `livres` ON emprunts.isbn = livres.isbn
 HAVING retard > 30;
 
--- question 6
+--question 6
+CREATE VIEW retard AS
+
+
+-- question 9
+-- on pourrais mettre un index sur <livres.auteur> car il s'agit d'un champs souvent utiliser, cela permettrait de gagner du temps 
+
